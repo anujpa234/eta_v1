@@ -1,0 +1,46 @@
+{"timestamp": "2025-08-28T11:49:33.670579Z", "level": "info", "event": "Starting RAG API service initialization"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T11:49:33.671965Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "session_60ddc438e3e09c3f", "has_retriever": false, "timestamp": "2025-08-28T11:49:33.796375Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T11:49:33.797533Z", "level": "info", "event": "Config loaded successfully"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T11:49:33.797610Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T11:49:33.843143Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-08-28T11:49:33.843369Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T11:49:33.843648Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-08-28T11:49:33.843690Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"timestamp": "2025-08-28T11:49:33.843720Z", "level": "info", "event": "RAG API service initialized successfully"}
+{"message": "what is API? please explain in detail", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T11:49:44.484271Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T11:49:44.485788Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T11:49:44.486198Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T11:49:44.486242Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T11:49:44.486379Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "what is API? please explain in detail", "chat_history_length": 0, "language": "English", "timestamp": "2025-08-28T11:49:44.486417Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What is an API? Please explain it in detail.", "top_k": 5, "timestamp": "2025-08-28T11:49:45.350925Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34448'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '191f1028-8405-11f0-85ad-0f0ada6ec64b'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '191f1028-8405-11f0-85ad-0f0ada6ec64b'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 11:49:48 GMT'
+{"query": "What is an API? Please explain it in detail.", "results_found": 5, "timestamp": "2025-08-28T11:49:48.177754Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 2, "timestamp": "2025-08-28T11:49:52.315215Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 1644, "timestamp": "2025-08-28T11:49:52.315497Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 1644, "timestamp": "2025-08-28T11:49:52.315616Z", "level": "info", "event": "Chat response generated"}

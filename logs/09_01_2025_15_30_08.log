@@ -1,0 +1,208 @@
+{"timestamp": "2025-09-01T11:30:09.201036Z", "level": "info", "event": "Starting RAG API service initialization"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:30:09.202331Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "session_ba8988125c6842ca", "has_retriever": false, "timestamp": "2025-09-01T11:30:09.317150Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:30:09.318159Z", "level": "info", "event": "Config loaded successfully"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T11:30:09.318203Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T11:30:09.364354Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-09-01T11:30:09.364562Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:30:09.364831Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-09-01T11:30:09.364864Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"timestamp": "2025-09-01T11:30:09.364895Z", "level": "info", "event": "RAG API service initialized successfully"}
+{"message": "hello buddy", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:30:13.154434Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:30:13.155769Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:30:13.156254Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:30:13.156372Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:30:13.156577Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "Hello! How can I assist you today?", "top_k": 5, "timestamp": "2025-09-01T11:30:14.382982Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34321'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '07c6ea06-8727-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '07c6ea06-8727-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:30:15 GMT'
+{"query": "Hello! How can I assist you today?", "results_found": 5, "timestamp": "2025-09-01T11:30:15.444540Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 2, "timestamp": "2025-09-01T11:30:16.242898Z", "level": "info", "event": "Added messages to chat history"}
+{"message": "do you know about CLIP model?", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:30:38.379489Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:30:38.380889Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:30:38.381402Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:30:38.381514Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:30:38.381704Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What is the CLIP model?", "top_k": 5, "timestamp": "2025-09-01T11:30:39.393986Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34390'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '167ae7f0-8727-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '167ae7f0-8727-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:30:40 GMT'
+{"query": "What is the CLIP model?", "results_found": 5, "timestamp": "2025-09-01T11:30:40.007628Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 4, "timestamp": "2025-09-01T11:30:42.553642Z", "level": "info", "event": "Added messages to chat history"}
+{"message": "what are the clip model available?", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:31:15.161885Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:31:15.163043Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:31:15.163329Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:31:15.163375Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:31:15.163514Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What are the available versions or implementations of the CLIP model?", "top_k": 5, "timestamp": "2025-09-01T11:31:16.206332Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34403'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '2c99d1f4-8727-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '2c99d1f4-8727-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:31:17 GMT'
+{"query": "What are the available versions or implementations of the CLIP model?", "results_found": 5, "timestamp": "2025-09-01T11:31:17.124488Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 6, "timestamp": "2025-09-01T11:31:20.251264Z", "level": "info", "event": "Added messages to chat history"}
+{"message": "what are the clip model available? explain me in arabic", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:31:56.862282Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:31:56.863616Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:31:56.863998Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:31:56.864062Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:31:56.864277Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "\u0645\u0627 \u0647\u064a \u0627\u0644\u0646\u0645\u0627\u0630\u062c \u0627\u0644\u0645\u062a\u0627\u062d\u0629 \u0644\u0640 CLIP\u061f", "top_k": 5, "timestamp": "2025-09-01T11:31:57.857229Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34514'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '4548ca98-8727-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '4548ca98-8727-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:31:58 GMT'
+{"query": "\u0645\u0627 \u0647\u064a \u0627\u0644\u0646\u0645\u0627\u0630\u062c \u0627\u0644\u0645\u062a\u0627\u062d\u0629 \u0644\u0640 CLIP\u061f", "results_found": 5, "timestamp": "2025-09-01T11:31:58.531132Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 8, "timestamp": "2025-09-01T11:32:01.678528Z", "level": "info", "event": "Added messages to chat history"}
+{"message": "do u know anything about uae api guidelines?", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:32:27.423112Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:32:27.424520Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:32:27.424875Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:32:27.424931Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:32:27.425090Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "Do you have any information about the API guidelines in the UAE?", "top_k": 5, "timestamp": "2025-09-01T11:32:28.321888Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34414'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '579b231c-8727-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '579b231c-8727-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:32:29 GMT'
+{"query": "Do you have any information about the API guidelines in the UAE?", "results_found": 5, "timestamp": "2025-09-01T11:32:29.289057Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 10, "timestamp": "2025-09-01T11:32:32.616023Z", "level": "info", "event": "Added messages to chat history"}
+{"message": "name few indian moview?", "session_id": "6380d651", "language": "English", "timestamp": "2025-09-01T11:39:28.685284Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T11:39:28.686602Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "6380d651", "has_retriever": true, "timestamp": "2025-09-01T11:39:28.687008Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T11:39:28.687100Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T11:39:28.687264Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "Here are a few popular Indian movies across different genres and languages:\n\n1. **3 Idiots** (Hindi) - A comedy-drama about the pressures of the Indian education system.\n2. **Baahubali: The Beginning** (Telugu/Tamil) - An epic action film with a historical setting.\n3. **Dangal** (Hindi) - A biographical sports drama based on the true story of wrestler Mahavir Singh Phogat and his daughters.\n4. **Kabhi Khushi Kabhie Gham** (Hindi) - A family drama that explores themes of love and relationships.\n5. **Super Deluxe** (Tamil) - A thriller that intertwines multiple stories with dark humor.\n6. **Gully Boy** (Hindi) - A musical drama inspired by the lives of street rappers in Mumbai.\n7. **Drishyam** (Malayalam) - A crime thriller about a man who goes to great lengths to protect his family.\n8. **Lagaan** (Hindi) - A historical sports drama set during the British Raj.\n\nThese films are known for their storytelling, performances, and cultural impact.", "top_k": 5, "timestamp": "2025-09-01T11:39:33.305788Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '35353'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '54e5e2e6-8728-11f0-9ba1-238f8f1e2702'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '54e5e2e6-8728-11f0-9ba1-238f8f1e2702'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 11:39:34 GMT'
+{"query": "Here are a few popular Indian movies across different genres and languages:\n\n1. **3 Idiots** (Hindi) - A comedy-drama about the pressures of the Indian education system.\n2. **Baahubali: The Beginning** (Telugu/Tamil) - An epic action film with a historical setting.\n3. **Dangal** (Hindi) - A biographical sports drama based on the true story of wrestler Mahavir Singh Phogat and his daughters.\n4. **Kabhi Khushi Kabhie Gham** (Hindi) - A family drama that explores themes of love and relationships.\n5. **Super Deluxe** (Tamil) - A thriller that intertwines multiple stories with dark humor.\n6. **Gully Boy** (Hindi) - A musical drama inspired by the lives of street rappers in Mumbai.\n7. **Drishyam** (Malayalam) - A crime thriller about a man who goes to great lengths to protect his family.\n8. **Lagaan** (Hindi) - A historical sports drama set during the British Raj.\n\nThese films are known for their storytelling, performances, and cultural impact.", "results_found": 5, "timestamp": "2025-09-01T11:39:34.370974Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "6380d651", "history_length": 12, "timestamp": "2025-09-01T11:39:37.943579Z", "level": "info", "event": "Added messages to chat history"}

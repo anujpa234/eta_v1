@@ -1,0 +1,10 @@
+{"timestamp": "2025-09-01T09:42:21.820655Z", "level": "info", "event": "Starting RAG API service initialization"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T09:42:21.822078Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "session_1119551bce59ce7c", "has_retriever": false, "timestamp": "2025-09-01T09:42:21.939457Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T09:42:21.940481Z", "level": "info", "event": "Config loaded successfully"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T09:42:21.940530Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T09:42:21.986406Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-09-01T09:42:21.986675Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T09:42:21.986990Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-09-01T09:42:21.987026Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"timestamp": "2025-09-01T09:42:21.987061Z", "level": "info", "event": "RAG API service initialized successfully"}

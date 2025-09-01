@@ -1,0 +1,210 @@
+{"timestamp": "2025-08-28T07:21:10.544442Z", "level": "info", "event": "Starting RAG API service initialization"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:21:10.545725Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "session_31079cfd647979dd", "has_retriever": false, "timestamp": "2025-08-28T07:21:10.657420Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:21:10.658422Z", "level": "info", "event": "Config loaded successfully"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T07:21:10.658467Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T07:21:10.704016Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-08-28T07:21:10.704431Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:21:10.704782Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-08-28T07:21:10.704827Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"timestamp": "2025-08-28T07:21:10.704862Z", "level": "info", "event": "RAG API service initialized successfully"}
+{"message": "What is API?", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T07:22:02.333056Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:22:02.334488Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T07:22:02.334859Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T07:22:02.334903Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:22:02.335034Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "What is API?", "chat_history_length": 0, "language": "English", "timestamp": "2025-08-28T07:22:02.335068Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What is an API?", "top_k": 5, "timestamp": "2025-08-28T07:22:04.001626Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34362'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'b3609db2-83df-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'b3609db2-83df-11f0-ae55-4f9da0c11b03'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 07:22:09 GMT'
+{"query": "What is an API?", "results_found": 5, "timestamp": "2025-08-28T07:22:09.373013Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 2, "timestamp": "2025-08-28T07:22:11.179059Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:22:11.179309Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:22:11.179396Z", "level": "info", "event": "Chat response generated"}
+{"message": "What are API guidelines?", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T07:22:23.070613Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:22:23.071679Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T07:22:23.071990Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T07:22:23.072034Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:22:23.072178Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "What are API guidelines?", "chat_history_length": 2, "language": "English", "timestamp": "2025-08-28T07:22:23.072212Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What are API guidelines?", "top_k": 5, "timestamp": "2025-08-28T07:22:24.138484Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34374'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'be931e58-83df-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'be931e58-83df-11f0-ae55-4f9da0c11b03'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 07:22:24 GMT'
+{"query": "What are API guidelines?", "results_found": 5, "timestamp": "2025-08-28T07:22:24.781087Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 4, "timestamp": "2025-08-28T07:22:26.333164Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 382, "timestamp": "2025-08-28T07:22:26.333451Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 382, "timestamp": "2025-08-28T07:22:26.333555Z", "level": "info", "event": "Chat response generated"}
+{"message": "What is API?", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T07:22:38.522249Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:22:38.527391Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T07:22:38.528732Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T07:22:38.528830Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:22:38.528976Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "What is API?", "chat_history_length": 4, "language": "English", "timestamp": "2025-08-28T07:22:38.529014Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What is an API?", "top_k": 5, "timestamp": "2025-08-28T07:22:40.257478Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34366'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'c83ce358-83df-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'c83ce358-83df-11f0-ae55-4f9da0c11b03'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 07:22:41 GMT'
+{"query": "What is an API?", "results_found": 5, "timestamp": "2025-08-28T07:22:41.001003Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 6, "timestamp": "2025-08-28T07:22:41.794805Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:22:41.795063Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:22:41.795156Z", "level": "info", "event": "Chat response generated"}
+{"message": "how to design apis?", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T07:22:53.505412Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:22:53.507809Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T07:22:53.508124Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T07:22:53.508169Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:22:53.508307Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "how to design apis?", "chat_history_length": 6, "language": "English", "timestamp": "2025-08-28T07:22:53.508339Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "How do you design APIs?", "top_k": 5, "timestamp": "2025-08-28T07:22:54.505491Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34367'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'd14586f8-83df-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'd14586f8-83df-11f0-ae55-4f9da0c11b03'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 07:22:56 GMT'
+{"query": "How do you design APIs?", "results_found": 5, "timestamp": "2025-08-28T07:22:56.144244Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 8, "timestamp": "2025-08-28T07:22:58.054029Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 360, "timestamp": "2025-08-28T07:22:58.054203Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 360, "timestamp": "2025-08-28T07:22:58.054270Z", "level": "info", "event": "Chat response generated"}
+{"message": "how to design apis? please eloborate in details", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T07:23:12.921481Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T07:23:12.926071Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T07:23:12.926403Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T07:23:12.926445Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T07:23:12.926580Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "how to design apis? please eloborate in details", "chat_history_length": 8, "language": "English", "timestamp": "2025-08-28T07:23:12.926612Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "How can APIs be designed in detail?", "top_k": 5, "timestamp": "2025-08-28T07:23:13.861993Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34394'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'dc4cdf10-83df-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'dc4cdf10-83df-11f0-ae55-4f9da0c11b03'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 07:23:14 GMT'
+{"query": "How can APIs be designed in detail?", "results_found": 5, "timestamp": "2025-08-28T07:23:14.653333Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test123", "history_length": 10, "timestamp": "2025-08-28T07:23:15.589240Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:23:15.589501Z", "level": "info", "event": "Response generated successfully"}
+{"session_id": "test123", "response_length": 13, "timestamp": "2025-08-28T07:23:15.589604Z", "level": "info", "event": "Chat response generated"}
+{"message": "what is an API?", "session_id": "test123", "language": "English", "timestamp": "2025-08-28T11:43:45.981584Z", "level": "info", "event": "Processing chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T11:43:45.987065Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test123", "has_retriever": true, "timestamp": "2025-08-28T11:43:45.987692Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-08-28T11:43:45.987807Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T11:43:45.987962Z", "level": "info", "event": "LCEL chain built successfully"}
+{"session_id": "test123", "user_input": "what is an API?", "chat_history_length": 10, "language": "English", "timestamp": "2025-08-28T11:43:45.988015Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What is an API?", "top_k": 5, "timestamp": "2025-08-28T11:43:47.325486Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34366'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '433baf66-8404-11f0-ae55-4f9da0c11b03'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+{"message": "what is an API?", "error": "Error in [/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py] at line [320]\nMessage: Failed to process user input: Error in [/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py] at line [106]\nMessage: Hybrid search failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\nTraceback:\nTraceback (most recent call last):\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 106, in search\n    for result in results:\n                  ^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/paging.py\", line 82, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/tracing/decorator.py\", line 119, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_generated/operations/_documents_operations.py\", line 745, in search_post\n    pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 242, in run\n    return first_node.send(pipeline_request)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_redirect.py\", line 205, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 567, in send\n    raise err\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 545, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 130, in send\n    self._sender.send(request.http_request, **request.context.options),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/transport/_requests_basic.py\", line 411, in send\n    raise error\nazure.core.exceptions.ServiceResponseError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n\nTraceback:\nTraceback (most recent call last):\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 106, in search\n    for result in results:\n                  ^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/paging.py\", line 82, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/tracing/decorator.py\", line 119, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_generated/operations/_documents_operations.py\", line 745, in search_post\n    pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 242, in run\n    return first_node.send(pipeline_request)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_redirect.py\", line 205, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 567, in send\n    raise err\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 545, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 130, in send\n    self._sender.send(request.http_request, **request.context.options),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/transport/_requests_basic.py\", line 411, in send\n    raise error\nazure.core.exceptions.ServiceResponseError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 320, in invoke\n    response = self.chain.invoke(chain_input)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 3080, in invoke\n    input_ = context.run(step.invoke, input_, config, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 3816, in invoke\n    output = {key: future.result() for key, future in zip(steps, futures)}\n                   ^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/.local/share/uv/python/cpython-3.12.8-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/.local/share/uv/python/cpython-3.12.8-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/Users/anujpandey/.local/share/uv/python/cpython-3.12.8-macos-aarch64-none/lib/python3.12/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 3800, in _invoke_step\n    return context.run(\n           ^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 3082, in invoke\n    input_ = context.run(step.invoke, input_, config)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 4828, in invoke\n    return self._call_with_config(\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 1953, in _call_with_config\n    context.run(\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/config.py\", line 429, in call_func_with_variable_args\n    return func(input, **kwargs)  # type: ignore[call-arg]\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py\", line 4685, in _invoke\n    output = call_func_with_variable_args(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/langchain_core/runnables/config.py\", line 429, in call_func_with_variable_args\n    return func(input, **kwargs)  # type: ignore[call-arg]\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 243, in retrieve_docs\n    docs = self.retriever.search(rewritten_question, top_k=5)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 125, in search\n    raise CommonException(f\"Hybrid search failed: {e}\", sys)\nexception.custom_exception.CommonException: Error in [/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py] at line [106]\nMessage: Hybrid search failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\nTraceback:\nTraceback (most recent call last):\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/src/data_retrieval/retrieval.py\", line 106, in search\n    for result in results:\n                  ^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/paging.py\", line 82, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/tracing/decorator.py\", line 119, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/search/documents/_generated/operations/_documents_operations.py\", line 745, in search_post\n    pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 242, in run\n    return first_node.send(pipeline_request)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_redirect.py\", line 205, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 567, in send\n    raise err\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/policies/_retry.py\", line 545, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 98, in send\n    response = self.next.send(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  [Previous line repeated 2 more times]\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/_base.py\", line 130, in send\n    self._sender.send(request.http_request, **request.context.options),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/anujpandey/llm_projects/end_to_end_projects/adek_ai_v2/.venv/lib/python3.12/site-packages/azure/core/pipeline/transport/_requests_basic.py\", line 411, in send\n    raise error\nazure.core.exceptions.ServiceResponseError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\n\n", "timestamp": "2025-08-28T11:44:07.077003Z", "level": "error", "event": "Chat request failed"}

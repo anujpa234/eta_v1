@@ -1,0 +1,214 @@
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-27T12:24:23.082031Z", "level": "info", "event": "AISearchManager initialized"}
+{"chunk_size": 1000, "chunk_overlap": 200, "supported_extensions": [".docx", ".pdf", ".md", ".txt"], "timestamp": "2025-08-27T12:24:24.094894Z", "level": "info", "event": "ChatIngestor initialized"}
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')?api-version=REDACTED'
+Request method: 'GET'
+Request headers:
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=minimal'
+    'x-ms-client-request-id': 'c42d981a-8340-11f0-9dfb-1bc5ea3e97a0'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+No body was attached to the request
+Response status: 404
+Response headers:
+    'Cache-Control': 'no-cache,no-store'
+    'Pragma': 'no-cache'
+    'Content-Length': '120'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Language': 'REDACTED'
+    'Expires': '-1'
+    'request-id': 'c42d981a-8340-11f0-9dfb-1bc5ea3e97a0'
+    'elapsed-time': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Date': 'Wed, 27 Aug 2025 12:24:23 GMT'
+{"index_name": "documents-index", "error": "() No index with the name 'documents-index' was found in the service 'general-rag-store'.\nCode: \nMessage: No index with the name 'documents-index' was found in the service 'general-rag-store'.", "timestamp": "2025-08-27T12:24:24.259610Z", "level": "info", "event": "Search index does not exist"}
+{"timestamp": "2025-08-27T12:24:24.259673Z", "level": "info", "event": "Creating new search index"}
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')?api-version=REDACTED'
+Request method: 'PUT'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '643'
+    'api-key': 'REDACTED'
+    'Prefer': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=minimal'
+    'x-ms-client-request-id': 'c446c2c2-8340-11f0-9dfb-1bc5ea3e97a0'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 201
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8'
+    'ETag': '"0x8DDE564A8F0E354"'
+    'Location': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'c446c2c2-8340-11f0-9dfb-1bc5ea3e97a0'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Wed, 27 Aug 2025 12:24:25 GMT'
+{"index_name": "documents-index", "vector_dimensions": 1536, "timestamp": "2025-08-27T12:24:25.025344Z", "level": "info", "event": "Created search index successfully"}
+{"extension": ".docx", "count": 0, "timestamp": "2025-08-27T12:24:25.026247Z", "level": "info", "event": "Found files by extension"}
+{"extension": ".pdf", "count": 1, "timestamp": "2025-08-27T12:24:25.026610Z", "level": "info", "event": "Found files by extension"}
+{"extension": ".md", "count": 0, "timestamp": "2025-08-27T12:24:25.026899Z", "level": "info", "event": "Found files by extension"}
+{"extension": ".txt", "count": 0, "timestamp": "2025-08-27T12:24:25.027181Z", "level": "info", "event": "Found files by extension"}
+{"metadata_file": "ingestion_metadata.json", "timestamp": "2025-08-27T12:24:25.027289Z", "level": "info", "event": "No metadata file found, starting fresh"}
+{"total_files": 1, "force_reprocess": false, "timestamp": "2025-08-27T12:24:25.027356Z", "level": "info", "event": "Starting file processing"}
+{"file_path": "data/dc2523af.pdf", "fingerprint": "72870054", "timestamp": "2025-08-27T12:24:25.027462Z", "level": "info", "event": "Generated file fingerprint"}
+{"file_path": "data/dc2523af.pdf", "pages_loaded": 69, "file_type": ".pdf", "timestamp": "2025-08-27T12:24:29.966447Z", "level": "info", "event": "Document loaded successfully"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.index?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '4606788'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'f1835f34-8340-11f0-9dfb-1bc5ea3e97a0'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'f1835f34-8340-11f0-9dfb-1bc5ea3e97a0'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Wed, 27 Aug 2025 12:25:41 GMT'
+{"total_docs": 130, "successful": 130, "failed": 0, "timestamp": "2025-08-27T12:25:41.352641Z", "level": "info", "event": "Document upload completed"}
+{"metadata_file": "ingestion_metadata.json", "files_tracked": 1, "timestamp": "2025-08-27T12:25:41.353819Z", "level": "info", "event": "Saved metadata"}
+{"file_path": "data/dc2523af.pdf", "chunks_created": 130, "timestamp": "2025-08-27T12:25:41.353917Z", "level": "info", "event": "File processed successfully"}
+{"total_files": 1, "processed_files": 1, "skipped_files": 0, "total_chunks": 130, "timestamp": "2025-08-27T12:25:41.353980Z", "level": "info", "event": "File processing completed"}
+{"data_folder": "data", "total_files": 1, "total_chunks": 130, "timestamp": "2025-08-27T12:25:41.356805Z", "level": "info", "event": "Retriever build completed"}
+{"timestamp": "2025-08-27T12:25:41.356986Z", "level": "info", "event": "Data ingestion pipeline completed successfully"}

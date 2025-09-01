@@ -1,0 +1,59 @@
+# Core Dependencies
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+pyyaml
+python-multipart
+
+# LangChain and LangGraph
+langchain
+langchain-community
+langchain-openai
+langgraph
+langchain-anthropic
+
+# Vector Store and Embeddings
+chromadb
+sentence-transformers
+openai
+
+# Document Processing
+pypdf
+python-docx
+unstructured
+unstructured[md]
+docx2txt
+
+# ML and Data Processing
+numpy
+pandas
+scikit-learn
+torch
+transformers
+
+# API and Web
+requests
+httpx
+aiohttp
+websockets
+
+# Logging and Monitoring
+structlog
+prometheus-client
+
+# Testing
+pytest
+pytest-asyncio
+pytest-cov
+
+# Development
+black
+flake8
+mypy
+pre-commit
+
+# Main Azure AI Search libraries
+azure-search-documents
+azure-identity  # For authentication (optional but recommended)
+azure-core

@@ -1,0 +1,43 @@
+{"timestamp": "2025-09-01T09:58:34.234554Z", "level": "info", "event": "Starting RAG API service initialization"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T09:58:34.235871Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "session_3faa8fa77f713d59", "has_retriever": false, "timestamp": "2025-09-01T09:58:34.351193Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T09:58:34.352241Z", "level": "info", "event": "Config loaded successfully"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T09:58:34.352291Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-09-01T09:58:34.397988Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-09-01T09:58:34.398221Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T09:58:34.398535Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-09-01T09:58:34.398569Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"timestamp": "2025-09-01T09:58:34.398608Z", "level": "info", "event": "RAG API service initialized successfully"}
+{"message": "can you explain about api?", "session_id": "aeaa7103", "language": "English", "timestamp": "2025-09-01T09:58:46.151516Z", "level": "info", "event": "Processing streaming chat request"}
+{"config_path": "config/config.yaml", "timestamp": "2025-09-01T09:58:46.153172Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "aeaa7103", "has_retriever": true, "timestamp": "2025-09-01T09:58:46.153591Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"timestamp": "2025-09-01T09:58:46.153648Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-09-01T09:58:46.153817Z", "level": "info", "event": "LCEL chain built successfully"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "Can you explain what an API is?", "top_k": 5, "timestamp": "2025-09-01T09:58:46.884221Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34383'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '40d7a608-871a-11f0-aae1-f11111b886f0'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '40d7a608-871a-11f0-aae1-f11111b886f0'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Mon, 01 Sep 2025 09:58:47 GMT'
+{"query": "Can you explain what an API is?", "results_found": 5, "timestamp": "2025-09-01T09:58:47.748126Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "aeaa7103", "history_length": 2, "timestamp": "2025-09-01T09:58:50.073002Z", "level": "info", "event": "Added messages to chat history"}

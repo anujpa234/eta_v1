@@ -1,0 +1,37 @@
+{"config_path": "config/config.yaml", "timestamp": "2025-08-28T06:59:52.501717Z", "level": "info", "event": "Config loaded successfully"}
+{"session_id": "test_session_1", "has_retriever": false, "timestamp": "2025-08-28T06:59:52.612348Z", "level": "info", "event": "ConversationalRAG initialized"}
+{"search_endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T06:59:52.612474Z", "level": "info", "event": "Loading Azure Search retriever"}
+{"endpoint": "https://general-rag-store.search.windows.net", "index_name": "documents-index", "timestamp": "2025-08-28T06:59:52.656518Z", "level": "info", "event": "AzureSearchRetriever initialized successfully"}
+{"timestamp": "2025-08-28T06:59:52.656762Z", "level": "info", "event": "Building LCEL chain"}
+{"timestamp": "2025-08-28T06:59:52.657044Z", "level": "info", "event": "LCEL chain built successfully"}
+{"timestamp": "2025-08-28T06:59:52.657079Z", "level": "info", "event": "Retriever loaded and chain built successfully"}
+{"session_id": "test_session_1", "user_input": "What is best guidelines for APIs?", "chat_history_length": 0, "language": "English", "timestamp": "2025-08-28T06:59:52.657118Z", "level": "info", "event": "Processing user query"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"query": "What are the best guidelines for designing and using APIs?", "top_k": 5, "timestamp": "2025-08-28T06:59:54.132213Z", "level": "info", "event": "Performing hybrid search"}
+HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+Request URL: 'https://general-rag-store.search.windows.net/indexes('documents-index')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '34437'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '9a68311a-83dc-11f0-8df9-1fa14c0d6b96'
+    'User-Agent': 'azsdk-python-search-documents/11.5.3 Python/3.12.8 (macOS-15.6.1-arm64-arm-64bit)'
+A body is sent with the request
+Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '9a68311a-83dc-11f0-8df9-1fa14c0d6b96'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Thu, 28 Aug 2025 06:59:55 GMT'
+{"query": "What are the best guidelines for designing and using APIs?", "results_found": 5, "timestamp": "2025-08-28T06:59:55.802284Z", "level": "info", "event": "Hybrid search completed"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"session_id": "test_session_1", "history_length": 2, "timestamp": "2025-08-28T06:59:58.012549Z", "level": "info", "event": "Added messages to chat history"}
+{"session_id": "test_session_1", "response_length": 411, "timestamp": "2025-08-28T06:59:58.012852Z", "level": "info", "event": "Response generated successfully"}

@@ -1,0 +1,32 @@
+faiss_db:
+  collection_name: "adek_ai"
+
+required_env_vars:
+  - "GEMINI_API_KEY"
+  - "OPENAI_API_KEY"
+
+embedding_model:
+  openai:
+    provider: "openai"
+    model_name: "text-embedding-3-small"
+  
+  google:
+    provider: "google"
+    model_name: "models/text-embedding-004"
+
+retriever:
+  top_k: 10
+
+llm:
+  google:
+    provider: "google"
+    model_name: "gemini-2.0-flash"
+    temperature: 0
+    max_output_tokens: 2048
+
+  openai:
+    provider: "openai"
+    model_name: "gpt-4o"
+    temperature: 0
+    max_output_tokens: 2048
+    openai_api_base: "https://api.core42.ai/v1"
