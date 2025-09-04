@@ -79,7 +79,7 @@ class AzureSearchRetriever:
             raise CommonException(f"Failed to initialize AzureSearchRetriever: {e}", sys)
     
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        """Perform hybrid search (combines text + vector)."""
+        """Perform hybrid search with CORRECTED relevance thresholds."""
         try:
             logger.info("Performing hybrid search", query=query, top_k=top_k)
             
@@ -93,17 +93,22 @@ class AzureSearchRetriever:
                 fields="content_vector"
             )
             
-            # Perform hybrid search (text + vector)
+            # Perform hybrid search
             results = self.search_client.search(
-                search_text=query,  # Text search
-                vector_queries=[vector_query],  # Vector search
+                search_text=query,
+                vector_queries=[vector_query],
                 top=top_k,
                 select=["id", "content", "file_path", "file_type", "chunk_index"]
             )
             
             # Convert results to list of documents
             documents = []
+            all_scores = []
+            
             for result in results:
+                search_score = result.get("@search.score", 0.0)
+                all_scores.append(search_score)
+                
                 documents.append({
                     "page_content": result.get("content", ""),
                     "metadata": {
@@ -111,18 +116,52 @@ class AzureSearchRetriever:
                         "file_path": result.get("file_path", ""),
                         "file_type": result.get("file_type", ""),
                         "chunk_index": result.get("chunk_index", 0),
-                        "score": result.get("@search.score", 0.0)
+                        "score": search_score
                     }
                 })
             
-            logger.info("Hybrid search completed", 
-                       query=query,
-                       results_found=len(documents))
+            if not documents:
+                logger.info("No search results returned", query=query)
+                return []
             
-            return documents
+            # OPTION 1: Use much lower threshold (RECOMMENDED)
+            RELEVANCE_THRESHOLD = 0.01  # Much more realistic for Azure Search
             
+            relevant_docs = []
+            for doc in documents:
+                score = doc["metadata"]["score"]
+                if score >= RELEVANCE_THRESHOLD:
+                    relevant_docs.append(doc)
+          
+            # Debug output
+            print(f" SEARCH DEBUG:")
+            print(f"  Query: {query}")
+            print(f"  Total results: {len(documents)}")
+            if all_scores:
+                print(f"  Score range: {min(all_scores):.4f} - {max(all_scores):.4f}")
+                print(f"  Threshold used: {RELEVANCE_THRESHOLD}")
+            print(f"  Relevant docs: {len(relevant_docs)}")
+            
+            if relevant_docs:
+                logger.info("Relevant documents found", 
+                        query=query,
+                        total_results=len(documents),
+                        relevant_results=len(relevant_docs),
+                        best_score=max([doc["metadata"]["score"] for doc in relevant_docs]))
+            else:
+                logger.info("No relevant documents found", query=query)
+                
+                # Emergency fallback: if nothing passes threshold, keep the best result
+                if documents:
+                    best_doc = max(documents, key=lambda x: x["metadata"]["score"])
+                    print(f" FALLBACK: Keeping best result with score {best_doc['metadata']['score']:.4f}")
+                    return [best_doc]
+            
+            return relevant_docs
+        
         except Exception as e:
             raise CommonException(f"Hybrid search failed: {e}", sys)
+
 
 
 
@@ -218,6 +257,7 @@ class ConversationalRAG:
             logger.error("Error formatting documents", error=str(e))
             return ""
     
+    
     def _build_lcel_chain(self):
         """Build the complete LCEL chain for conversational RAG."""
         try:
@@ -241,6 +281,8 @@ class ConversationalRAG:
             # 2. Retrieve docs for rewritten question
             def retrieve_docs(rewritten_question: str) -> str:
                 docs = self.retriever.search(rewritten_question, top_k=5)
+                if not docs:
+                    return ""
                 return self._format_docs(docs)
             
             retrieve_docs_chain = question_rewriter | RunnableLambda(retrieve_docs)
@@ -361,122 +403,290 @@ class ConversationalRAG:
             raise CommonException(f"Failed to stream response: {e}", sys)
 
 
-# Example usage and testing
-def test_conversational_rag():
-    """Test the conversational RAG system."""
+
+# Add this method to your ConversationalRAG class (inside the class definition)
+
+def debug_full_pipeline(self, user_input: str, chat_history: List[BaseMessage] = None, language: str = "English"):
+    """Debug the entire RAG pipeline step by step."""
+    
+    print(f"\n{'='*80}")
+    print(f"🔍 DEBUGGING FULL RAG PIPELINE")
+    print(f"{'='*80}")
+    print(f"Input Query: '{user_input}'")
+    print(f"Language: {language}")
+    
+    if chat_history is None:
+        chat_history = self.get_chat_history()
+    print(f"Chat History Length: {len(chat_history)}")
+    
     try:
-        # Get configuration from environment
-        SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
-        SEARCH_KEY = os.getenv("AZURE_SEARCH_KEY")
-        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-        INDEX_NAME = "documents-index"
+        # STEP 1: Question Contextualization
+        print(f"\n📝 STEP 1: Question Contextualization")
+        print("-" * 50)
         
-        # Validate environment variables
-        required_vars = {
-            "AZURE_SEARCH_ENDPOINT": SEARCH_ENDPOINT,
-            "AZURE_SEARCH_KEY": SEARCH_KEY,
-            "OPENAI_API_KEY": OPENAI_API_KEY
+        contextualize_input = {
+            "input": user_input,
+            "chat_history": chat_history,
+            "language": language
         }
         
-        for var_name, var_value in required_vars.items():
-            if not var_value:
-                raise ValueError(f"{var_name} environment variable is required")
+        contextualized_question = (
+            self.contextualize_prompt | self.llm | StrOutputParser()
+        ).invoke(contextualize_input)
         
-        print("Testing Conversational RAG System...")
+        print(f"Original Question: {user_input}")
+        print(f"Contextualized Question: {contextualized_question}")
         
-        # Load config
-        config = load_config()
+        # STEP 2: Document Retrieval  
+        print(f"\n🔍 STEP 2: Document Retrieval")
+        print("-" * 50)
         
-        # Test 1: Initialize without retriever
-        print("\nTesting initialization without retriever...")
-        rag = ConversationalRAG(session_id="test_session_1", config=config)
-        print(f"RAG initialized with session: {rag.session_id}")
+        if not self.retriever:
+            print("❌ ERROR: No retriever found!")
+            return
+            
+        # Test direct retrieval
+        docs = self.retriever.search(contextualized_question, top_k=5)
         
-        # Test 2: Load retriever
-        print("\nLoading retriever...")
-        rag.load_retriever(
-            search_endpoint=SEARCH_ENDPOINT,
-            search_key=SEARCH_KEY,
-            index_name=INDEX_NAME,
-            openai_api_key=OPENAI_API_KEY,
-            config=config
-        )
-        print("Retriever loaded and chain built")
+        print(f"Documents Retrieved: {len(docs)}")
         
-        # Test 3: Single query
-        print("\nTesting single query...")
-        response = rag.invoke("What is best guidelines for APIs?", language="English")
-        print(f"Query: What is best guidelines for APIs?")
-        print(f"Response: {response}")
-    
-        # Test 4: Different language
-        # print("\nTesting different language...")
-        # response3 = rag.invoke("What is API design principles?", language="French")
-        # print(f"Query: What is API design principles? (in French)")
-        # print(f"Response: {response3}")
-        
-        # Test 6: Chat history inspection
-        # print("\nChat history:")
-        # chat_history = rag.get_chat_history()
-        # print(f"Total messages in history: {len(chat_history)}")
-        # for i, msg in enumerate(chat_history[-4:]):  # Show last 4 messages
-        #     msg_type = "Human" if isinstance(msg, HumanMessage) else "AI"
-        #     print(f"  {msg_type}: {msg.content[:100]}...")
-        
-        # Test 7: New session
-        # print("\nTesting new session...")
-        # rag2 = ConversationalRAG(session_id="test_session_2", config=config)
-        # rag2.load_retriever(SEARCH_ENDPOINT, SEARCH_KEY, INDEX_NAME, OPENAI_API_KEY, config)
-        
-        # response4 = rag2.invoke("What is security guidelines?", language="English")
-        # print(f"New session query: What is security guidelines?")
-        # print(f"Response: {response4}")
-        # print(f"New session history length: {len(rag2.get_chat_history())}")
-        
-        # print("\n🎉 All tests completed successfully!")
-        
-        # # Interactive mode
-        # print("\n" + "="*60)
-        # print("🎯 INTERACTIVE MODE")
-        # print("Chat with your documents! (type 'quit' to exit)")
-        # print("Commands: 'clear' to clear history, 'history' to see chat history")
-        
-        # while True:
-        #     try:
-        #         user_query = input(f"\n[{rag.session_id[:8]}] You: ").strip()
+        if not docs:
+            print("❌ NO DOCUMENTS RETRIEVED!")
+            print("Testing raw Azure Search...")
+            
+            # Try raw search
+            try:
+                query_embedding = self.retriever.embeddings.embed_query(contextualized_question)
+                vector_query = VectorizedQuery(
+                    vector=query_embedding,
+                    k_nearest_neighbors=5,
+                    fields="content_vector"
+                )
                 
-        #         if user_query.lower() == 'quit':
-        #             break
-        #         elif user_query.lower() == 'clear':
-        #             rag.clear_chat_history()
-        #             print("Chat history cleared!")
-        #             continue
-        #         elif user_query.lower() == 'history':
-        #             history = rag.get_chat_history()
-        #             print(f"📚 Chat History ({len(history)} messages):")
-        #             for i, msg in enumerate(history[-6:]):  # Show last 6
-        #                 msg_type = "You" if isinstance(msg, HumanMessage) else "AI"
-        #                 print(f"  {msg_type}: {msg.content[:150]}...")
-        #             continue
-        #         elif not user_query:
-        #             continue
+                raw_results = self.retriever.search_client.search(
+                    search_text=contextualized_question,
+                    vector_queries=[vector_query],
+                    top=5,
+                    select=["id", "content", "file_path", "file_type", "chunk_index"]
+                )
                 
-        #         # Get AI response
-        #         response = rag.invoke(user_query, language="English")
-        #         print(f"AI: {response}")
+                raw_docs = list(raw_results)
+                print(f"Raw search returned: {len(raw_docs)} documents")
                 
-        #     except KeyboardInterrupt:
-        #         break
-        #     except Exception as e:
-        #         print(f"Error: {e}")
+                if raw_docs:
+                    print("Raw results with scores:")
+                    for i, result in enumerate(raw_docs[:3]):
+                        score = result.get("@search.score", 0.0)
+                        content = result.get("content", "")[:100]
+                        print(f"  {i+1}. Score: {score:.4f} | Content: {content}...")
+                else:
+                    print("❌ Even raw search returned no results - INDEX IS EMPTY!")
+            except Exception as e:
+                print(f"❌ Raw search failed: {e}")
+            
+            return
         
-        # print("\nThanks for testing the Conversational RAG system!")
+        # Show retrieved documents
+        for i, doc in enumerate(docs):
+            score = doc["metadata"].get("score", 0.0)
+            content = doc["page_content"][:150]
+            file_path = doc["metadata"].get("file_path", "Unknown")
+            
+            print(f"Doc {i+1}:")
+            print(f"  Score: {score:.4f}")
+            print(f"  Source: {file_path}")
+            print(f"  Content: {content}...")
+            print()
+        
+        # STEP 3: Context Formatting
+        print(f"📄 STEP 3: Context Formatting")
+        print("-" * 50)
+        
+        formatted_context = self._format_docs(docs)
+        print(f"Formatted Context Length: {len(formatted_context)} characters")
+        print(f"Context Preview (first 300 chars):")
+        print(f"'{formatted_context[:300]}...'")
+        
+        if not formatted_context.strip():
+            print("❌ FORMATTED CONTEXT IS EMPTY!")
+            return
+        
+        # STEP 4: Answer Generation
+        print(f"\n🤖 STEP 4: Answer Generation")
+        print("-" * 50)
+        
+        qa_input = {
+            "context": formatted_context,
+            "input": user_input,
+            "chat_history": chat_history,
+            "language": language
+        }
+        
+        answer = (self.qa_prompt | self.llm | StrOutputParser()).invoke(qa_input)
+        
+        print(f"Generated Answer: '{answer}'")
+        
+        is_no_answer = "don't have enough relevant information" in answer.lower()
+        print(f"Is 'I don't know' response: {is_no_answer}")
         
     except Exception as e:
-        app_exc = CommonException(f"Conversational RAG test failed: {e}", sys)
-        logger.error(str(app_exc))
-        raise app_exc
+        print(f"❌ ERROR during debugging: {e}")
+        import traceback
+        traceback.print_exc()
+def debug_rag_pipeline():
+    """Standalone debug function - run this immediately."""
+    
+    print("🔍 STANDALONE RAG PIPELINE DEBUG")
+    print("=" * 60)
+    
+    try:
+        # Initialize your RAG system
+        print("1. Initializing RAG system...")
+        rag = ConversationalRAG(session_id="debug_session")
+        
+        print("2. Loading retriever...")
+        rag.load_retriever(
+            search_endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
+            search_key=os.getenv("AZURE_SEARCH_KEY"),
+            index_name="documents-index",
+            openai_api_key=os.getenv("OPENAI_API_KEY")
+        )
+        
+        query = "What are API design best practices?"
+        print(f"3. Testing query: '{query}'")
+        
+        # TEST 1: Check if Azure Search has any data
+        print("\n🔍 TEST 1: Checking Azure Search Index")
+        print("-" * 40)
+        
+        from azure.search.documents import SearchClient
+        from azure.core.credentials import AzureKeyCredential
+        
+        search_client = SearchClient(
+            endpoint=os.getenv("AZURE_SEARCH_ENDPOINT"),
+            index_name="documents-index",
+            credential=AzureKeyCredential(os.getenv("AZURE_SEARCH_KEY"))
+        )
+        
+        # Check total documents
+        all_docs = list(search_client.search("*", top=5))
+        print(f"Total docs in index: {len(all_docs)}")
+        
+        if all_docs:
+            print("✅ Index has data!")
+            sample_doc = all_docs[0]
+            print(f"Sample document keys: {list(sample_doc.keys())}")
+            content = sample_doc.get('content', 'No content field')
+            print(f"Sample content: {str(content)[:100]}...")
+        else:
+            print("❌ INDEX IS EMPTY! This is your main problem.")
+            print("You need to run your data ingestion pipeline first.")
+            return
+        
+        # TEST 2: Test direct search
+        print("\n🔍 TEST 2: Testing Direct Search")
+        print("-" * 40)
+        
+        search_results = list(search_client.search(query, top=3))
+        print(f"Direct search results: {len(search_results)}")
+        
+        if search_results:
+            for i, result in enumerate(search_results):
+                score = result.get("@search.score", 0.0)
+                content = str(result.get("content", ""))[:100]
+                print(f"Result {i+1}: Score={score:.4f}, Content={content}...")
+        
+        # TEST 3: Test your retriever
+        print("\n🔍 TEST 3: Testing Your Retriever")
+        print("-" * 40)
+        
+        retrieved_docs = rag.retriever.search(query, top_k=3)
+        print(f"Your retriever returned: {len(retrieved_docs)} documents")
+        
+        if retrieved_docs:
+            for i, doc in enumerate(retrieved_docs):
+                score = doc["metadata"].get("score", 0.0)
+                content = doc["page_content"][:100]
+                print(f"Doc {i+1}: Score={score:.4f}, Content={content}...")
+        else:
+            print("❌ YOUR RETRIEVER RETURNED NOTHING!")
+            print("This means your relevance filtering is too strict.")
+        
+        # TEST 4: Test context formatting
+        print("\n📄 TEST 4: Testing Context Formatting")
+        print("-" * 40)
+        
+        if retrieved_docs:
+            context = rag._format_docs(retrieved_docs)
+            print(f"Formatted context length: {len(context)}")
+            print(f"Context preview: {context[:200]}...")
+            
+            if not context.strip():
+                print("❌ FORMATTED CONTEXT IS EMPTY!")
+            else:
+                print("✅ Context formatted successfully")
+        
+        # TEST 5: Test full pipeline
+        print("\n🤖 TEST 5: Testing Full Pipeline")
+        print("-" * 40)
+        
+        try:
+            response = rag.invoke(query)
+            print(f"Final response: {response}")
+            
+            is_no_answer = "don't have enough relevant information" in response.lower()
+            print(f"Is 'I don't know' response: {is_no_answer}")
+            
+            if is_no_answer and retrieved_docs:
+                print("❌ PROBLEM: Retrieved docs but still saying 'I don't know'")
+                print("This suggests your QA prompt is too strict.")
+            elif not is_no_answer:
+                print("✅ SUCCESS: Generated actual answer!")
+                
+        except Exception as e:
+            print(f"❌ Full pipeline failed: {e}")
+        
+        # SUMMARY
+        print(f"\n📊 DEBUG SUMMARY")
+        print("=" * 40)
+        print(f"Index has data: {'✅' if all_docs else '❌'}")
+        print(f"Direct search works: {'✅' if search_results else '❌'}")
+        print(f"Retriever returns docs: {'✅' if retrieved_docs else '❌'}")
+        print(f"Context formatting works: {'✅' if retrieved_docs and context.strip() else '❌'}")
+        
+    except Exception as e:
+        print(f"❌ Debug failed: {e}")
+        import traceback
+        traceback.print_exc()
 
-
+# Run the debug
 if __name__ == "__main__":
-    test_conversational_rag()
+    debug_rag_pipeline()
+
+# Or add this to your test function:
+def test_conversational_rag():
+    """Modified test function with debugging."""
+    try:
+        # Run debug first
+        debug_rag_pipeline()
+        
+        # Then your regular tests...
+        
+    except Exception as e:
+        print(f"Test failed: {e}")
+            
+# Run the debug
+if __name__ == "__main__":
+    debug_rag_pipeline()
+
+# Or add this to your test function:
+def test_conversational_rag():
+    """Modified test function with debugging."""
+    try:
+        # Run debug first
+        debug_rag_pipeline()
+        
+        # Then your regular tests...
+        
+    except Exception as e:
+        print(f"Test failed: {e}")
